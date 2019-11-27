@@ -27,7 +27,7 @@ public class NoteController {
 	/*
 	 * Define a handler method to read the existing notes from the database and add
 	 * it to the ModelMap which is an implementation of Map, used when building
-	 * model data for use with views. it should map to the default URL i.e. "/index"
+	 * model data for use with views. it should map to the default URL i.e. "/"
 	 */
 
 	/*
