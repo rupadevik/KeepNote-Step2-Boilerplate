@@ -2,7 +2,12 @@ package com.stackroute.keepnote.dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaQuery;
+import javax.transaction.Transactional;
+
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.stackroute.keepnote.model.Note;
 
@@ -15,23 +20,27 @@ import com.stackroute.keepnote.model.Note;
  * 					transaction. The database transaction happens inside the scope of a persistence 
  * 					context.  
  * */
-
+@Repository
+@Transactional
 public class NoteDAOImpl implements NoteDAO {
 
 	/*
 	 * Autowiring should be implemented for the SessionFactory.
 	 */
-
-	public NoteDAOImpl(SessionFactory sessionFactory) {
-
-	}
-
+@Autowired
+private SessionFactory sessionFactory;
+	
 	/*
 	 * Save the note in the database(note) table.
 	 */
 
+	public NoteDAOImpl(SessionFactory sessionFactory) {
+	this.sessionFactory = sessionFactory;
+}
+
 	public boolean saveNote(Note note) {
-		return false;
+		sessionFactory.getCurrentSession().save(note);
+		return true;
 
 	}
 
@@ -39,8 +48,9 @@ public class NoteDAOImpl implements NoteDAO {
 	 * Remove the note from the database(note) table.
 	 */
 
-	public boolean deleteNote(int noteId) {
-		return false;
+	public boolean deleteNote(int noteid) {
+		sessionFactory.getCurrentSession().delete(getNoteById(noteid));
+		return true;
 
 	}
 
@@ -49,22 +59,26 @@ public class NoteDAOImpl implements NoteDAO {
 	 * order(showing latest note first)
 	 */
 	public List<Note> getAllNotes() {
-		return null;
-
+		CriteriaQuery<Note> criteriaQuery = sessionFactory.getCurrentSession().getCriteriaBuilder().createQuery(Note.class);
+		criteriaQuery.from(Note.class);
+		
+		return sessionFactory.getCurrentSession().createQuery(criteriaQuery).getResultList();
 	}
+
 
 	/*
 	 * retrieve specific note from the database(note) table
 	 */
 	public Note getNoteById(int noteId) {
-		return null;
-
+return sessionFactory.getCurrentSession().find(Note.class, noteId);
+		
 	}
 
 	/* Update existing note */
 
 	public boolean UpdateNote(Note note) {
-		return false;
+		sessionFactory.getCurrentSession().update(note);
+		return true;
 
 	}
 

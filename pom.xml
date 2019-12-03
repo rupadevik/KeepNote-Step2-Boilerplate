@@ -31,9 +31,18 @@
 		<!-- Dependency for jaxb-impl to be added(if using JDK9) -->
 
 		<!-- Dependency for commons-dbcp to be added -->
+		<dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
 
 		<!-- Dependency for jstl to be added -->
-
+		<dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
 
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -43,6 +52,11 @@
 		</dependency>
 
 		<!-- Dependency for spring orm to be added -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>5.0.4.RELEASE</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -51,6 +65,11 @@
 		</dependency>
 
 		<!-- Dependency for mysql-connector to be added -->
+		<dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.6</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
