@@ -61,7 +61,7 @@ public String indexPage(ModelMap model) {
 @PostMapping(value="/add")
 public String addNote(@ModelAttribute("note") Note note, ModelMap model) {
 
-	if (note.getNoteTitle().isEmpty()) {
+	if (note.getNoteContent().isEmpty()) {
 			model.addAttribute("errorMessage", "Fields should not be empty");
 		return "index";
 	} else {
