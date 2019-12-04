@@ -104,7 +104,7 @@ public String deleteNote(@RequestParam int noteId, ModelMap model) {
 	return "redirect:/";
 
 }
-@RequestMapping(value = "/updateCustomer")
+@RequestMapping(value = "/updateNote")
 public String updateNote(@RequestParam int noteId, ModelMap model) {		
 	model.addAttribute("note", noteDao.getNoteById(noteId));		
 	return "update";
