@@ -38,25 +38,32 @@ public class ApplicationContextConfig {
 	@Autowired
 
 	public DataSource getDataSource() {
-		BasicDataSource datasource = new BasicDataSource();
-		datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		BasicDataSource dataSource = new BasicDataSource();
+		/* datasource.setDriverClassName("com.mysql.cj.jdbc.Driver");
 		datasource.setUrl(
 				"jdbc:mysql://localhost:3306/Schema1" + "?verifyServerCertificate=false&useSSL=false&requireSSL=false");
 		datasource.setUsername("root");
-		datasource.setPassword("root");
-		return datasource;
+		datasource.setPassword("root");*/
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		  dataSource.setUrl("jdbc:mysql://" + System.getenv("MYSQL_HOST") + ":3306/" +
+		  System.getenv("MYSQL_DATABASE")
+		  +"?verifyServerCertificate=false&useSSL=false&requireSSL=false");
+		  dataSource.setUsername(System.getenv("MYSQL_USER"));
+		  dataSource.setPassword(System.getenv("MYSQL_PASSWORD"));
+		return dataSource;
 	}
 
-	/*
-	 * Use this configuration while submitting solution in hobbes.
-	 * dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-	 * dataSource.setUrl("jdbc:mysql://" + System.getenv("MYSQL_HOST") + ":3306/" +
-	 * System.getenv("MYSQL_DATABASE")
-	 * +"?verifyServerCertificate=false&useSSL=false&requireSSL=false");
-	 * dataSource.setUsername(System.getenv("MYSQL_USER"));
-	 * dataSource.setPassword(System.getenv("MYSQL_PASSWORD"));
-	 */
-
+	
+	 /*Use this configuration while submitting solution in hobbes.
+	
+	  dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+	  dataSource.setUrl("jdbc:mysql://" + System.getenv("MYSQL_HOST") + ":3306/" +
+	  System.getenv("MYSQL_DATABASE")
+	  +"?verifyServerCertificate=false&useSSL=false&requireSSL=false");
+	  dataSource.setUsername(System.getenv("MYSQL_USER"));
+	  dataSource.setPassword(System.getenv("MYSQL_PASSWORD"));
+	 
+*/
 	/*
 	 * Define the bean for SessionFactory. Hibernate SessionFactory is the factory
 	 * class through which we get sessions and perform database operations.
