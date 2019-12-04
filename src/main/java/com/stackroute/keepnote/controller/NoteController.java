@@ -5,10 +5,12 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stackroute.keepnote.dao.NoteDAO;
@@ -110,7 +112,7 @@ public String updateNote(@RequestParam int noteId, ModelMap model) {
 	return "update";
 }
 
-@RequestMapping(value = "/update")
+@RequestMapping(value = "/update", method=RequestMethod.POST)
 public String update(@ModelAttribute("note") Note note, ModelMap model) {
 	note.setCreatedAt(LocalDateTime.now());
 	noteDao.UpdateNote(note);

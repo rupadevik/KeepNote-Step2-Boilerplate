@@ -48,7 +48,7 @@
 <td>${note.noteTitle}</td>
 <td>${note.noteContent}</td>
 <td>${note.noteStatus}</td>
-<td><form action="updateNote" method="post">
+<td><form action="update" method="post">
 						<input type="hidden" id="noteId" name="noteId"
 							value="${note.noteId}" />
 						<button type="submit">Update</button>
